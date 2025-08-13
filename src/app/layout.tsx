@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
 import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core';
 import { Inter } from 'next/font/google';
+import { Notifications } from '@mantine/notifications';
 
 import { mantineTheme } from 'theme';
 
 import StoreProvider from './StoreProvider';
 
 import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.layer.css';
 import 'public/styles/variables.css';
 
 import './globals.css';
@@ -35,7 +37,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </head>
 
         <body suppressHydrationWarning className={`${inter.variable} antialiased`}>
-          <MantineProvider theme={mantineTheme}>{children}</MantineProvider>
+          <MantineProvider theme={mantineTheme}>
+            <Notifications autoClose={10000} position="bottom-left" />
+
+            {children}
+          </MantineProvider>
         </body>
       </html>
     </StoreProvider>

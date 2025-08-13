@@ -4,11 +4,11 @@ import { AppShell, Stack } from '@mantine/core';
 
 import { Header } from 'components';
 
-interface MainLayoutProps {
+interface PrivateLayoutProps {
   children: ReactNode;
 }
 
-const MainLayout: FC<MainLayoutProps> = ({ children }) => {
+const PrivateLayout: FC<PrivateLayoutProps> = ({ children }) => {
   return (
     <AppShell component={Stack} bg="white" header={{ height: 42 }}>
       <Header />
@@ -20,4 +20,4 @@ const MainLayout: FC<MainLayoutProps> = ({ children }) => {
   );
 };
 
-export default MainLayout;
+export default PrivateLayout;

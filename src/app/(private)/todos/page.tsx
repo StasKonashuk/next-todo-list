@@ -3,10 +3,10 @@
 import { Stack } from '@mantine/core';
 import { Title } from 'components';
 
-export default function Tasks() {
+export default function Todos() {
   return (
     <Stack>
-      <Title>Tasks</Title>
+      <Title>Todos</Title>
     </Stack>
   );
 }
