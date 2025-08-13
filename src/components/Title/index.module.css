@@ -1,0 +1,43 @@
+.h1 {
+  font-size: var(--font-heading-h1-font-size) !important;
+  font-weight: var(--font-heading-h1-font-weight) !important;
+  font-style: var(--font-heading-h1-font-style) !important;
+  font-stretch: var(--font-heading-h1-font-stretch) !important;
+  letter-spacing: var(--font-heading-h1-letter-spacing) !important;
+  line-height: var(--font-heading-h1-line-height) !important;
+}
+
+.h2 {
+  font-size: var(--font-heading-h2-font-size) !important;
+  font-weight: var(--font-heading-h2-font-weight) !important;
+  font-style: var(--font-heading-h2-font-style) !important;
+  font-stretch: var(--font-heading-h2-font-stretch) !important;
+  letter-spacing: var(--font-heading-h2-letter-spacing) !important;
+  line-height: var(--font-heading-h2-line-height) !important;
+}
+
+.h3 {
+  font-size: var(--font-heading-h3-font-size) !important;
+  font-weight: var(--font-heading-h3-font-weight) !important;
+  font-style: var(--font-heading-h3-font-style) !important;
+  font-stretch: var(--font-heading-h3-font-stretch) !important;
+  letter-spacing: var(--font-heading-h3-letter-spacing) !important;
+  line-height: var(--font-heading-h3-line-height) !important;
+}
+
+.h4 {
+  font-size: var(--font-heading-h4-font-size) !important;
+  font-weight: var(--font-heading-h4-font-weight) !important;
+  font-style: var(--font-heading-h4-font-style) !important;
+  font-stretch: var(--font-heading-h4-font-stretch) !important;
+  letter-spacing: var(--font-heading-h4-letter-spacing) !important;
+  line-height: var(--font-heading-h4-line-height) !important;
+}
+
+.primary {
+  color: var(--color-text-primary-base) !important;
+}
+
+.secondary {
+  color: var(--color-text-secondary) !important;
+}

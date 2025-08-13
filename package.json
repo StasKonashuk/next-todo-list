@@ -1,27 +1,60 @@
 {
-  "name": "test",
+  "name": "test-app-tasks-list",
+  "author": "Stas Konashuk",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "concurrently \"npm run watch-tokens\" \"next dev --turbopack\"",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build-tokens": "style-dictionary build --config ./style-dictionary/config.json",
+    "watch-tokens": "nodemon --watch style-dictionary/tokens --ext json --exec \"npm run build-tokens\""
   },
   "dependencies": {
+    "@mantine/core": "8.2.4",
+    "@mantine/hooks": "8.2.4",
+    "@paralect/node-mongo": "^3.3.0",
+    "@reduxjs/toolkit": "^2.8.2",
+    "axios": "^1.11.0",
+    "bcryptjs": "^3.0.2",
+    "clsx": "^2.1.1",
+    "concurrently": "^9.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "next": "15.4.6",
+    "nodemon": "^3.1.10",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.4.6"
+    "react-redux": "^9.2.0",
+    "style-dictionary": "^5.0.1",
+    "zod": "^4.0.17"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/lodash": "^4.17.20",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "bash -c 'tsc --noEmit'",
+      "prettier --write"
+    ],
+    "*.css": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "!(*.css|*.ts|*.tsx)": [
+      "prettier --write"
+    ]
   }
 }

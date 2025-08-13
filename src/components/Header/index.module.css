@@ -1,0 +1,13 @@
+.header {
+  border: none !important;
+  height: 42px;
+
+  padding: var(--spacing-m) var(--spacing-xl);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  background: var(--color-bg-primary-base);
+}
