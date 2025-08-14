@@ -1,0 +1,95 @@
+import { ActionIcon, Button, Group, ScrollArea, Stack, Textarea } from '@mantine/core';
+import { FC, useCallback } from 'react';
+import { TodoComment } from 'lib/features/todos/types';
+import { Text } from 'components';
+import { FaTrash } from 'react-icons/fa';
+import { useForm } from 'react-hook-form';
+
+import classes from './index.module.css';
+import { AddTodoCommentParams } from 'lib/types';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { addTodoCommentSchema } from 'lib/schemas';
+import { useDispatch } from 'react-redux';
+import { addCommentToTodo, removeCommentFromTodo } from 'lib/features';
+
+interface TodoCommentsProps {
+  comments?: TodoComment[];
+  todoId: string;
+}
+
+const TodoComments: FC<TodoCommentsProps> = ({ comments, todoId }) => {
+  const dispatch = useDispatch();
+
+  console.log({ comments });
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<AddTodoCommentParams>({
+    defaultValues: { text: '' },
+    resolver: zodResolver(addTodoCommentSchema),
+  });
+
+  const handleRemoveTodoComment = useCallback(
+    (commentId: string) => {
+      dispatch(removeCommentFromTodo({ todoId: todoId, commentId }));
+    },
+    [dispatch, todoId],
+  );
+
+  const handleAddTodoComment = useCallback(
+    (data: AddTodoCommentParams) => {
+      dispatch(addCommentToTodo({ todoId: todoId, commentText: data.text }));
+
+      reset();
+    },
+    [dispatch, todoId, reset],
+  );
+
+  const displayedComments = comments?.map(({ text, id }) => {
+    return (
+      <Group key={id} justify="space-between" w="100%">
+        <Text>{text}</Text>
+
+        <ActionIcon onClick={() => handleRemoveTodoComment(id)}>
+          <FaTrash />
+        </ActionIcon>
+      </Group>
+    );
+  });
+
+  return (
+    <Stack w="100%">
+      <Stack w="100%" align="center" mih={200}>
+        {Boolean(!comments?.length) && <Text>No comments</Text>}
+
+        {Boolean(comments?.length) && (
+          <ScrollArea h={200} w="100%">
+            <Stack gap={16}>{displayedComments}</Stack>
+          </ScrollArea>
+        )}
+      </Stack>
+
+      <form onSubmit={handleSubmit(handleAddTodoComment)}>
+        <Stack>
+          <Textarea
+            {...register('text')}
+            placeholder="Enter todo comment"
+            autosize
+            minRows={2}
+            maxRows={3}
+            classNames={{ input: classes.textarea }}
+            error={errors.text?.message}
+          />
+
+          <Button type="submit" fullWidth>
+            Send
+          </Button>
+        </Stack>
+      </form>
+    </Stack>
+  );
+};
+
+export default TodoComments;

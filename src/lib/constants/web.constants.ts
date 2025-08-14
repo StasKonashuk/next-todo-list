@@ -1,4 +1,7 @@
 export enum RoutePath {
+  // Public paths
+  Welcome = '/welcome',
+
   // Private paths
   Home = '/',
   Todos = '/todos',

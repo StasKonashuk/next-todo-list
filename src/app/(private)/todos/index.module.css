@@ -1,0 +1,5 @@
+.todoWrapper {
+  justify-content: space-between;
+
+  cursor: pointer;
+}

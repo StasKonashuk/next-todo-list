@@ -21,7 +21,7 @@ const Header: FC = () => {
   }, [signOut]);
 
   return (
-    <AppShell.Header zIndex={300} className={classes.header}>
+    <AppShell.Header className={classes.header}>
       <Text textColor="primary-white" fw="medium">
         Test Todo List App
       </Text>

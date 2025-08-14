@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { ColorSchemeScript, mantineHtmlProps, MantineProvider } from '@mantine/core';
 import { Inter } from 'next/font/google';
 import { Notifications } from '@mantine/notifications';
+import { ModalsProvider } from '@mantine/modals';
 
 import { mantineTheme } from 'theme';
 
@@ -9,9 +10,11 @@ import StoreProvider from './StoreProvider';
 
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.layer.css';
+import '@mantine/dates/styles.css';
 import 'public/styles/variables.css';
 
 import './globals.css';
+import WelcomeScreenGuard from './WelcomeScreenGuard';
 
 type RootLayoutProps = Readonly<{ children: React.ReactNode }>;
 
@@ -40,7 +43,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <MantineProvider theme={mantineTheme}>
             <Notifications autoClose={10000} position="bottom-left" />
 
-            {children}
+            <ModalsProvider>
+              <WelcomeScreenGuard>{children}</WelcomeScreenGuard>
+            </ModalsProvider>
           </MantineProvider>
         </body>
       </html>
