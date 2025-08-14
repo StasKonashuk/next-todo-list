@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { TodoStatus } from 'lib/enums';
 import { uniqueId } from 'lodash';
+
 import {
   AddCommentToTodoPayload,
   AddTodosListPayload,
@@ -10,7 +12,6 @@ import {
   RemoveTodosListPayload,
   TodosState,
 } from './types';
-import { TodoStatus } from 'lib/enums';
 
 const initialState: TodosState = {
   todosLists: [
@@ -63,15 +64,15 @@ export const todosSlice = createSlice({
         if (todo) {
           return {
             ...list,
-            todos: list.todos.map((todo) => {
-              if (todo.id === todoId) {
+            todos: list.todos.map((t) => {
+              if (t.id === todoId) {
                 return {
-                  ...todo,
+                  ...t,
                   ...payload,
                 };
               }
 
-              return todo;
+              return t;
             }),
           };
         }
@@ -89,15 +90,15 @@ export const todosSlice = createSlice({
         if (todo) {
           return {
             ...list,
-            todos: list.todos.map((todo) => {
-              if (todo.id === todoId) {
+            todos: list.todos.map((t) => {
+              if (t.id === todoId) {
                 return {
-                  ...todo,
-                  comments: [{ id: uniqueId(), text: commentText }, ...(todo.comments || [])],
+                  ...t,
+                  comments: [{ id: uniqueId(), text: commentText }, ...(t.comments || [])],
                 };
               }
 
-              return todo;
+              return t;
             }),
           };
         }
@@ -115,15 +116,15 @@ export const todosSlice = createSlice({
         if (todo) {
           return {
             ...list,
-            todos: list.todos.map((todo) => {
-              if (todo.id === todoId) {
+            todos: list.todos.map((t) => {
+              if (t.id === todoId) {
                 return {
-                  ...todo,
-                  comments: todo.comments?.filter((c) => c.id !== commentId),
+                  ...t,
+                  comments: t.comments?.filter((c) => c.id !== commentId),
                 };
               }
 
-              return todo;
+              return t;
             }),
           };
         }

@@ -1,23 +1,25 @@
-import { zodResolver } from '@hookform/resolvers/zod';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { Button, Group, Select, Stack, Textarea, TextInput } from '@mantine/core';
+import { DatePickerInput } from '@mantine/dates';
 import { useDisclosure } from '@mantine/hooks';
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
+import { zodResolver } from '@hookform/resolvers/zod';
+import dayjs from 'dayjs';
 import { TODO_STATUS_OPTIONS } from 'lib/constants';
 import { ModalId } from 'lib/enums';
 import { editTodo, removeTodoFromList } from 'lib/features';
 import { Todo } from 'lib/features/todos/types';
 import { editTodoSchema } from 'lib/schemas';
 import { EditTodoParams } from 'lib/types';
-import { FC, useCallback, useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
-import classes from './index.module.css';
-import { DatePickerInput } from '@mantine/dates';
 import { Text } from 'components';
+
 import { calcTimeLeft } from './helpers';
-import dayjs from 'dayjs';
+
+import classes from './index.module.css';
 
 const TodoForm: FC<Todo> = ({ id, title, status, description, dueDate, createdOn }) => {
   const [timeLeft, setTimeLeft] = useState(() => calcTimeLeft(createdOn, dueDate));
@@ -105,37 +107,33 @@ const TodoForm: FC<Todo> = ({ id, title, status, description, dueDate, createdOn
         <Controller
           control={control}
           name="status"
-          render={({ field: { value, onChange }, fieldState: { error } }) => {
-            return (
-              <Select
-                label="Status"
-                disabled={!editMode}
-                value={value}
-                onChange={onChange}
-                data={TODO_STATUS_OPTIONS}
-                error={error?.message}
-              />
-            );
-          }}
+          render={({ field: { value, onChange }, fieldState: { error } }) => (
+            <Select
+              label="Status"
+              disabled={!editMode}
+              value={value}
+              onChange={onChange}
+              data={TODO_STATUS_OPTIONS}
+              error={error?.message}
+            />
+          )}
         />
 
         <Controller
           control={control}
           name="dueDate"
-          render={({ field: { value, onChange }, fieldState: { error } }) => {
-            return (
-              <DatePickerInput
-                disabled={!editMode}
-                valueFormat="DD/MM/YYYY"
-                label="Due date"
-                placeholder="Pick due date"
-                value={value}
-                onChange={onChange}
-                error={error?.message}
-                minDate={dayjs().add(1, 'd').format('YYYY-MM-DD')}
-              />
-            );
-          }}
+          render={({ field: { value, onChange }, fieldState: { error } }) => (
+            <DatePickerInput
+              disabled={!editMode}
+              valueFormat="DD/MM/YYYY"
+              label="Due date"
+              placeholder="Pick due date"
+              value={value}
+              onChange={onChange}
+              error={error?.message}
+              minDate={dayjs().add(1, 'd').format('YYYY-MM-DD')}
+            />
+          )}
         />
 
         {timeLeft && (

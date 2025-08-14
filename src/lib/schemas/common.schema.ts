@@ -1,6 +1,5 @@
-import { z } from 'zod';
-
 import { EMAIL_REGEX } from 'lib/constants';
+import { z } from 'zod';
 
 export const emailSchema = (
   requiredError: string = 'Email is required',

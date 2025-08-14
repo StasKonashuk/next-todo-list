@@ -1,31 +1,30 @@
 'use client';
 
-import { ActionIcon, Button, Collapse, Group, Stack } from '@mantine/core';
-import { FaChevronDown, FaTrash } from 'react-icons/fa';
-import { FaChevronUp } from 'react-icons/fa';
-import { useDisclosure } from '@mantine/hooks';
-import { Text, Title } from 'components';
-import { useAppSelector } from 'lib/hooks';
-
-import classes from './index.module.css';
-import { useDispatch } from 'react-redux';
-import { removeTodoFromList, removeTodosList } from 'lib/features';
-import { modals } from '@mantine/modals';
-import { ModalId } from 'lib/enums';
-import AddTodosListModal from './components/AddTodosListModal';
 import { useCallback } from 'react';
-import AddTodoModal from './components/AddTodoModal';
+import { ActionIcon, Button, Collapse, Group, Stack } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
 import { TODO_STATUS_LABELS } from 'lib/constants';
+import { ModalId } from 'lib/enums';
+import { removeTodoFromList, removeTodosList } from 'lib/features';
 import { Todo } from 'lib/features/todos/types';
+import { useAppSelector } from 'lib/hooks';
+import { FaChevronDown, FaChevronUp, FaTrash } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+
+import { Text, Title } from 'components';
+
+import AddTodoModal from './components/AddTodoModal';
+import AddTodosListModal from './components/AddTodosListModal';
 import TodoModal from './components/TodoModal';
 
-export default function Todos() {
+import classes from './index.module.css';
+
+const Todos = () => {
   const dispatch = useDispatch();
 
   const todosLists = useAppSelector((state) => state.todos.todosLists);
-
-  console.log({ todosLists });
 
   const [opened, { toggle }] = useDisclosure(true);
 
@@ -88,27 +87,25 @@ export default function Todos() {
   );
 
   const displayedTodosLists = todosLists.map((todosList) => {
-    const displayedTodos = todosList.todos.map((todo) => {
-      return (
-        <Group key={todo.id} className={classes.todoWrapper} onClick={() => handleOpenTodo(todo)}>
-          <Group gap={6}>
-            <Text>{todo.title}</Text>
+    const displayedTodos = todosList.todos.map((todo) => (
+      <Group key={todo.id} className={classes.todoWrapper} onClick={() => handleOpenTodo(todo)}>
+        <Group gap={6}>
+          <Text>{todo.title}</Text>
 
-            <Text>{TODO_STATUS_LABELS[todo.status]}</Text>
-          </Group>
-
-          <ActionIcon
-            onClick={(e) => {
-              e.stopPropagation();
-
-              handleRemoveTodo(todo.id);
-            }}
-          >
-            <FaTrash />
-          </ActionIcon>
+          <Text>{TODO_STATUS_LABELS[todo.status]}</Text>
         </Group>
-      );
-    });
+
+        <ActionIcon
+          onClick={(e) => {
+            e.stopPropagation();
+
+            handleRemoveTodo(todo.id);
+          }}
+        >
+          <FaTrash />
+        </ActionIcon>
+      </Group>
+    ));
 
     return (
       <Stack key={todosList.id} flex={1}>
@@ -156,4 +153,6 @@ export default function Todos() {
       </Stack>
     </Stack>
   );
-}
+};
+
+export default Todos;

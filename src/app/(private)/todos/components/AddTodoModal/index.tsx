@@ -1,19 +1,19 @@
-import { zodResolver } from '@hookform/resolvers/zod';
+import { FC, useCallback } from 'react';
 import { Button, Select, Stack, Textarea, TextInput } from '@mantine/core';
+import { DatePickerInput } from '@mantine/dates';
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
-import { DatePickerInput } from '@mantine/dates';
+import { zodResolver } from '@hookform/resolvers/zod';
+import dayjs from 'dayjs';
 import { TODO_STATUS_OPTIONS } from 'lib/constants';
 import { ModalId, TodoStatus } from 'lib/enums';
 import { addTodoToList } from 'lib/features';
 import { addTodoToListSchema } from 'lib/schemas';
 import { AddTodoToListParams } from 'lib/types';
-import { FC, useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
 import classes from './index.module.css';
-import dayjs from 'dayjs';
 
 interface AddTodoModalProps {
   listId: string;
@@ -72,35 +72,31 @@ const AddTodoModal: FC<AddTodoModalProps> = ({ listId }) => {
           <Controller
             control={control}
             name="status"
-            render={({ field: { value, onChange }, fieldState: { error } }) => {
-              return (
-                <Select
-                  label="Status"
-                  value={value}
-                  onChange={onChange}
-                  data={TODO_STATUS_OPTIONS}
-                  error={error?.message}
-                />
-              );
-            }}
+            render={({ field: { value, onChange }, fieldState: { error } }) => (
+              <Select
+                label="Status"
+                value={value}
+                onChange={onChange}
+                data={TODO_STATUS_OPTIONS}
+                error={error?.message}
+              />
+            )}
           />
 
           <Controller
             control={control}
             name="dueDate"
-            render={({ field: { value, onChange }, fieldState: { error } }) => {
-              return (
-                <DatePickerInput
-                  valueFormat="DD/MM/YYYY"
-                  label="Due date"
-                  placeholder="Pick due date"
-                  value={value}
-                  onChange={onChange}
-                  error={error?.message}
-                  minDate={dayjs().add(1, 'd').format('YYYY-MM-DD')}
-                />
-              );
-            }}
+            render={({ field: { value, onChange }, fieldState: { error } }) => (
+              <DatePickerInput
+                valueFormat="DD/MM/YYYY"
+                label="Due date"
+                placeholder="Pick due date"
+                value={value}
+                onChange={onChange}
+                error={error?.message}
+                minDate={dayjs().add(1, 'd').format('YYYY-MM-DD')}
+              />
+            )}
           />
         </Stack>
 

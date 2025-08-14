@@ -1,13 +1,14 @@
 'use client';
 
+import { redirect } from 'next/navigation';
 import { Button, Stack } from '@mantine/core';
-import { Text, Title } from 'components';
 import { RoutePath } from 'lib/constants';
 import { setIsWelcomeScreenDisplayed } from 'lib/features';
-import { redirect } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 
-export default function Welcome() {
+import { Text, Title } from 'components';
+
+const Welcome = () => {
   const dispatch = useDispatch();
 
   const handleGoToSingIn = () => {
@@ -27,4 +28,6 @@ export default function Welcome() {
       <Button onClick={handleGoToSingIn}>Go to Sign In</Button>
     </Stack>
   );
-}
+};
+
+export default Welcome;

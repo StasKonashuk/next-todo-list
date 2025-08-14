@@ -1,16 +1,17 @@
-import { ActionIcon, Button, Group, ScrollArea, Stack, Textarea } from '@mantine/core';
 import { FC, useCallback } from 'react';
+import { ActionIcon, Button, Group, ScrollArea, Stack, Textarea } from '@mantine/core';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { addCommentToTodo, removeCommentFromTodo } from 'lib/features';
 import { TodoComment } from 'lib/features/todos/types';
-import { Text } from 'components';
-import { FaTrash } from 'react-icons/fa';
+import { addTodoCommentSchema } from 'lib/schemas';
+import { AddTodoCommentParams } from 'lib/types';
 import { useForm } from 'react-hook-form';
+import { FaTrash } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+
+import { Text } from 'components';
 
 import classes from './index.module.css';
-import { AddTodoCommentParams } from 'lib/types';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { addTodoCommentSchema } from 'lib/schemas';
-import { useDispatch } from 'react-redux';
-import { addCommentToTodo, removeCommentFromTodo } from 'lib/features';
 
 interface TodoCommentsProps {
   comments?: TodoComment[];
@@ -20,7 +21,6 @@ interface TodoCommentsProps {
 const TodoComments: FC<TodoCommentsProps> = ({ comments, todoId }) => {
   const dispatch = useDispatch();
 
-  console.log({ comments });
   const {
     register,
     handleSubmit,
@@ -33,31 +33,29 @@ const TodoComments: FC<TodoCommentsProps> = ({ comments, todoId }) => {
 
   const handleRemoveTodoComment = useCallback(
     (commentId: string) => {
-      dispatch(removeCommentFromTodo({ todoId: todoId, commentId }));
+      dispatch(removeCommentFromTodo({ todoId, commentId }));
     },
     [dispatch, todoId],
   );
 
   const handleAddTodoComment = useCallback(
     (data: AddTodoCommentParams) => {
-      dispatch(addCommentToTodo({ todoId: todoId, commentText: data.text }));
+      dispatch(addCommentToTodo({ todoId, commentText: data.text }));
 
       reset();
     },
     [dispatch, todoId, reset],
   );
 
-  const displayedComments = comments?.map(({ text, id }) => {
-    return (
-      <Group key={id} justify="space-between" w="100%">
-        <Text>{text}</Text>
+  const displayedComments = comments?.map(({ text, id }) => (
+    <Group key={id} justify="space-between" w="100%">
+      <Text>{text}</Text>
 
-        <ActionIcon onClick={() => handleRemoveTodoComment(id)}>
-          <FaTrash />
-        </ActionIcon>
-      </Group>
-    );
-  });
+      <ActionIcon onClick={() => handleRemoveTodoComment(id)}>
+        <FaTrash />
+      </ActionIcon>
+    </Group>
+  ));
 
   return (
     <Stack w="100%">

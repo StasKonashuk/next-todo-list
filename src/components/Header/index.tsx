@@ -1,13 +1,15 @@
 'use client';
 
 import React, { FC, memo, useCallback } from 'react';
+import { redirect } from 'next/navigation';
 import { AppShell, Button } from '@mantine/core';
+import { RoutePath } from 'lib/constants';
+
+import Text from 'components/Text';
+
+import { useSignOutMutation } from 'services';
 
 import classes from './index.module.css';
-import Text from 'components/Text';
-import { redirect } from 'next/navigation';
-import { RoutePath } from 'lib/constants';
-import { useSignOutMutation } from 'services';
 
 const Header: FC = () => {
   const [signOut] = useSignOutMutation();

@@ -9,7 +9,10 @@
     "start": "next start",
     "lint": "next lint",
     "build-tokens": "style-dictionary build --config ./style-dictionary/config.json",
-    "watch-tokens": "nodemon --watch style-dictionary/tokens --ext json --exec \"npm run build-tokens\""
+    "watch-tokens": "nodemon --watch style-dictionary/tokens --ext json --exec \"npm run build-tokens\"",
+    "prettier": "prettier . --write --config .prettierrc.js",
+    "eslint": "eslint . --fix",
+    "precommit": "npm run build-tokens && lint-staged"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
@@ -45,10 +48,20 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.4.6",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-config-next": "^15.4.6",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-no-relative-import-paths": "^1.6.1",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5.5.4"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

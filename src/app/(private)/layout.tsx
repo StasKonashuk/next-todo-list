@@ -1,16 +1,17 @@
 'use client';
 
+import { redirect, usePathname } from 'next/navigation';
 import { Loader } from '@mantine/core';
 import { PrivateLayout } from 'layouts';
 import { RoutePath } from 'lib/constants';
-import { redirect, usePathname } from 'next/navigation';
+
 import { useGetAccountQuery } from 'services';
 
-export default function Layout({
-  children,
-}: Readonly<{
+interface LayoutProps {
   children: React.ReactNode;
-}>) {
+}
+
+const Layout = ({ children }: Readonly<LayoutProps>) => {
   const pathName = usePathname();
 
   const { data: accountResponse, isLoading: isAccountLoading } = useGetAccountQuery();
@@ -28,4 +29,6 @@ export default function Layout({
   }
 
   return <PrivateLayout>{children}</PrivateLayout>;
-}
+};
+
+export default Layout;

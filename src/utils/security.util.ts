@@ -1,10 +1,9 @@
 import bcrypt from 'bcryptjs';
 import jwt, { JwtPayload, Secret, SignOptions } from 'jsonwebtoken';
+import { TOKEN_SECURITY_EXPIRES_IN } from 'lib/constants';
 
 // @TODO: Add secret
 const JWT_SECRET = 'test';
-
-import { TOKEN_SECURITY_EXPIRES_IN } from 'lib/constants';
 
 const getHash = (text: string) => bcrypt.hash(text, 10);
 

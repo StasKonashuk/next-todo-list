@@ -1,8 +1,8 @@
-import { Stack } from '@mantine/core';
 import { FC } from 'react';
+import { Stack } from '@mantine/core';
+import { useAppSelector } from 'lib/hooks';
 
 import TodoTabs from './components/Tabs';
-import { useAppSelector } from 'lib/hooks';
 
 interface TodoModalProps {
   todoId: string;

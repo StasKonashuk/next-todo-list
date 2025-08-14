@@ -1,9 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import {
-  Title as MantineTitle,
-  TitleOrder,
-  TitleProps as MantineTitleProps,
-} from '@mantine/core';
+import { Title as MantineTitle, TitleOrder, TitleProps as MantineTitleProps } from '@mantine/core';
 import clsx from 'clsx';
 
 import classes from './index.module.css';
@@ -24,13 +20,7 @@ const TITLE_ORDERS: Record<string, TitleOrder> = {
   h6: 6,
 };
 
-const Title: FC<TitleProps> = ({
-  size = 'h1',
-  className,
-  textColor = 'primary',
-  children,
-  ...props
-}) => (
+const Title: FC<TitleProps> = ({ size = 'h1', className, textColor = 'primary', children, ...props }) => (
   <MantineTitle
     className={clsx(
       classes[size],
@@ -38,7 +28,7 @@ const Title: FC<TitleProps> = ({
         [classes.primary]: textColor === 'primary',
         [classes.secondary]: textColor === 'secondary',
       },
-      className
+      className,
     )}
     order={TITLE_ORDERS[size]}
     size={size}

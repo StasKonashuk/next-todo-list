@@ -1,21 +1,22 @@
-import { Tabs } from '@mantine/core';
 import { FC, useState } from 'react';
-import { TabValue } from './enums';
-import { TODO_TABS } from './constants';
-import TodoForm from '../TodoForm';
+import { Tabs } from '@mantine/core';
 import { Todo } from 'lib/features/todos/types';
+
 import TodoComments from '../Comments';
+import TodoForm from '../TodoForm';
+import { TODO_TABS } from './constants';
+import { TabValue } from './enums';
 
 const TodoTabs: FC<Todo> = (props) => {
+  const { comments, id } = props;
+
   const [activeTab, setActiveTab] = useState<string | null>(TabValue.Info);
 
-  const displayedTabs = TODO_TABS.map(({ value, label }) => {
-    return (
-      <Tabs.Tab key={value} value={value}>
-        {label}
-      </Tabs.Tab>
-    );
-  });
+  const displayedTabs = TODO_TABS.map(({ value, label }) => (
+    <Tabs.Tab key={value} value={value}>
+      {label}
+    </Tabs.Tab>
+  ));
 
   return (
     <Tabs value={activeTab} onChange={setActiveTab}>
@@ -26,7 +27,7 @@ const TodoTabs: FC<Todo> = (props) => {
       </Tabs.Panel>
 
       <Tabs.Panel value={TabValue.Comments} pt={16}>
-        <TodoComments comments={props.comments} todoId={props.id} />
+        <TodoComments comments={comments} todoId={id} />
       </Tabs.Panel>
     </Tabs>
   );

@@ -1,10 +1,11 @@
+import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
 import { COOKIES, TOKEN_SECURITY_EXPIRES_IN } from 'lib/constants';
-import { HTTP_CODE } from 'lib/enums';
+import { HttpCode } from 'lib/enums';
 import attachCustomErrors from 'lib/middlewares/attach-custom-errors';
 import { userService } from 'lib/resources/user';
 import { ApiHandler } from 'lib/types';
-import { cookies } from 'next/headers';
-import { NextResponse } from 'next/server';
+
 import { securityUtils } from 'utils';
 
 // @TODO: Move to utils
@@ -40,7 +41,7 @@ const signInHandler: ApiHandler = async (req, ctx) => {
   await setTokens(user._id);
 
   return new NextResponse(JSON.stringify({ data: userService.getPublic(user) }), {
-    status: HTTP_CODE.OK,
+    status: HttpCode.Ok,
     headers: { 'Content-Type': 'application/json' },
   });
 };

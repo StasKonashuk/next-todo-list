@@ -1,9 +1,9 @@
-import { COOKIES } from 'lib/constants';
-import { HTTP_CODE } from 'lib/enums';
-import attachCustomErrors from 'lib/middlewares/attach-custom-errors';
-import { ApiHandler } from 'lib/types';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { COOKIES } from 'lib/constants';
+import { HttpCode } from 'lib/enums';
+import attachCustomErrors from 'lib/middlewares/attach-custom-errors';
+import { ApiHandler } from 'lib/types';
 
 // @TODO: Move to utils
 const unsetTokens = async () => {
@@ -21,7 +21,7 @@ const signOutHandler: ApiHandler = async () => {
   await unsetTokens();
 
   return new NextResponse(JSON.stringify({ data: null }), {
-    status: HTTP_CODE.OK,
+    status: HttpCode.Ok,
     headers: { 'Content-Type': 'application/json' },
   });
 };

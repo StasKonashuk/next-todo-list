@@ -1,18 +1,20 @@
 'use client';
 
-import { Button, PasswordInput, Stack, TextInput } from '@mantine/core';
-import { Title } from 'components';
-import { RoutePath } from 'lib/constants';
-import { redirect } from 'next/navigation';
 import { useCallback } from 'react';
-import { useSignInMutation } from 'services';
+import { redirect } from 'next/navigation';
+import { Button, PasswordInput, Stack, TextInput } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { RoutePath } from 'lib/constants';
 import { signInSchema } from 'lib/schemas';
 import { ApiError, SignInParams } from 'lib/types';
-import { showNotification } from '@mantine/notifications';
+import { useForm } from 'react-hook-form';
 
-export default function SignIn() {
+import { Title } from 'components';
+
+import { useSignInMutation } from 'services';
+
+const SignIn = () => {
   const {
     register,
     handleSubmit,
@@ -79,4 +81,6 @@ export default function SignIn() {
       </Stack>
     </Stack>
   );
-}
+};
+
+export default SignIn;

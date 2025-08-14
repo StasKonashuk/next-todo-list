@@ -5,7 +5,7 @@ import { redirect, usePathname } from 'next/navigation';
 import { RoutePath } from 'lib/constants';
 import { useAppSelector } from 'lib/hooks';
 
-export default function WelcomeScreenGuard({ children }: { children: React.ReactNode }) {
+const WelcomeScreenGuard = ({ children }: { children: React.ReactNode }) => {
   const pathName = usePathname();
 
   const account = useAppSelector((store) => store.account);
@@ -16,5 +16,7 @@ export default function WelcomeScreenGuard({ children }: { children: React.React
     }
   }, [account.isWelcomeScreenDisplayed, pathName]);
 
-  return <>{children}</>;
-}
+  return children;
+};
+
+export default WelcomeScreenGuard;

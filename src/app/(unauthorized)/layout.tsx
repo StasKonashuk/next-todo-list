@@ -1,9 +1,9 @@
 import { UnauthorizedLayout } from 'layouts';
 
-export default function Layout({
-  children,
-}: Readonly<{
+interface LayoutProps {
   children: React.ReactNode;
-}>) {
-  return <UnauthorizedLayout>{children}</UnauthorizedLayout>;
 }
+
+const Layout = ({ children }: Readonly<LayoutProps>) => <UnauthorizedLayout>{children}</UnauthorizedLayout>;
+
+export default Layout;

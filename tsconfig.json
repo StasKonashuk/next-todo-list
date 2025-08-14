@@ -24,5 +24,5 @@
     "target": "ES2017"
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts", "src/utils"]
+  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts", "src/utils", ".eslintrc.js"]
 }

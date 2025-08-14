@@ -23,23 +23,21 @@ const Text: FC<TextProps> = ({
   className,
   children,
   ...props
-}) => {
-  return (
-    <MantineText
-      className={clsx(
-        classes[`${type}-${size}-${fw}`],
-        {
-          [classes.primary]: textColor === 'primary',
-          [classes.secondary]: textColor === 'secondary',
-          [classes.primaryWhite]: textColor === 'primary-white',
-        },
-        className,
-      )}
-      {...props}
-    >
-      {children}
-    </MantineText>
-  );
-};
+}) => (
+  <MantineText
+    className={clsx(
+      classes[`${type}-${size}-${fw}`],
+      {
+        [classes.primary]: textColor === 'primary',
+        [classes.secondary]: textColor === 'secondary',
+        [classes.primaryWhite]: textColor === 'primary-white',
+      },
+      className,
+    )}
+    {...props}
+  >
+    {children}
+  </MantineText>
+);
 
 export default Text;

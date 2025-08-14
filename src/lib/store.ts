@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+
+import { accountApi } from 'services';
+
 // @TODO: Add error handler
 // import { rtkQueryErrorMiddleware } from './middlewares';
 import { accountReducer, todosReducer } from './features';
-import { accountApi } from 'services';
 // @TODO: Add requests handler
 // import { authApi, moviesApi } from '../api/agents';
 
@@ -15,7 +17,7 @@ const combinedReducer = combineReducers({
   // [moviesApi.reducerPath]: moviesApi.reducer,
 });
 
-export const makeStore = () =>
+const makeStore = () =>
   configureStore({
     reducer: combinedReducer,
     // TODO: Add RTQ query middleware
@@ -25,3 +27,5 @@ export const makeStore = () =>
 export type AppStore = ReturnType<typeof makeStore>;
 export type RootState = ReturnType<AppStore['getState']>;
 export type AppDispatch = AppStore['dispatch'];
+
+export default makeStore;

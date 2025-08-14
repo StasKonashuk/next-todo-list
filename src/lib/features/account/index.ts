@@ -1,6 +1,5 @@
 import { readLocalStorageValue } from '@mantine/hooks';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from 'lib/store';
 
 export interface AccountState {
   id: string;
@@ -42,5 +41,3 @@ export const {
   reducer: accountReducer,
   actions: { setAccount, setIsWelcomeScreenDisplayed },
 } = accountSlice;
-
-export const selectAccount = (state: RootState) => state.account;

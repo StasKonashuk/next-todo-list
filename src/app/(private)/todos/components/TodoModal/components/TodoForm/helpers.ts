@@ -5,7 +5,7 @@ dayjs.extend(duration);
 
 export const calcTimeLeft = (createOn: string, dueDate?: string) => {
   if (!dueDate) {
-    return;
+    return '';
   }
 
   const now = dayjs();
@@ -16,7 +16,7 @@ export const calcTimeLeft = (createOn: string, dueDate?: string) => {
   const elapsed = now.diff(createOnDayJs);
   const remaining = totalDuration - elapsed;
 
-  if (remaining <= 0) return;
+  if (remaining <= 0) return '';
 
   const dur = dayjs.duration(remaining);
 
