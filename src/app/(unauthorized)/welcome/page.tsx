@@ -24,7 +24,7 @@ const Welcome = () => {
         Organize your tasks, stay productive, and never forget what matters most.
       </Text>
 
-      <Button size="sm" variant="primary" onClick={handleGoToSingIn}>
+      <Button size="md" variant="primary" onClick={handleGoToSingIn}>
         Go to Sign In
       </Button>
     </Stack>

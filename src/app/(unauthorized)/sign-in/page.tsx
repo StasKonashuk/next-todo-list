@@ -76,7 +76,7 @@ const SignIn = () => {
             />
           </Stack>
 
-          <Button variant="primary" size="sm" type="submit" loading={isLoading} fullWidth mt={32}>
+          <Button variant="primary" size="md" type="submit" loading={isLoading} fullWidth mt={32}>
             Sign in
           </Button>
         </form>

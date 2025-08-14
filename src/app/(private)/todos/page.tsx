@@ -29,7 +29,7 @@ const Todos = () => {
         <Group justify="space-between">
           <Title>Tasks</Title>
 
-          <Button variant="primary" size="md" h={32} onClick={handleAddTodosList}>
+          <Button variant="primary" size="md" h={36} onClick={handleAddTodosList}>
             Add Tasks List
           </Button>
         </Group>

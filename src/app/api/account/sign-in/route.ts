@@ -1,11 +1,13 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { userService } from 'features/api/users';
 import attachCustomErrors from 'shared/api/middlewares/attach-custom-errors';
 import { HttpCode } from 'shared/enums';
-import { ApiHandler } from 'shared/types';
+import { RequestContext } from 'shared/types';
 import { cookiesUtils, securityUtils } from 'shared/utils';
 
-const signInHandler: ApiHandler = async (req, ctx) => {
+export async function POST(req: NextRequest, ctx: RequestContext) {
+  attachCustomErrors(req, ctx);
+
   const { email, password } = await req.json();
 
   const user = await userService.findOne({ email });
@@ -26,8 +28,4 @@ const signInHandler: ApiHandler = async (req, ctx) => {
     status: HttpCode.Ok,
     headers: { 'Content-Type': 'application/json' },
   });
-};
-
-export async function POST() {
-  await attachCustomErrors(signInHandler);
 }

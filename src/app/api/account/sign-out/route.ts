@@ -1,18 +1,16 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import attachCustomErrors from 'shared/api/middlewares/attach-custom-errors';
 import { HttpCode } from 'shared/enums';
-import { ApiHandler } from 'shared/types';
+import { RequestContext } from 'shared/types';
 import { cookiesUtils } from 'shared/utils';
 
-const signOutHandler: ApiHandler = async () => {
+export async function POST(req: NextRequest, ctx: RequestContext) {
+  attachCustomErrors(req, ctx);
+
   await cookiesUtils.unsetTokens();
 
   return new NextResponse(JSON.stringify({ data: null }), {
     status: HttpCode.Ok,
     headers: { 'Content-Type': 'application/json' },
   });
-};
-
-export async function POST() {
-  await attachCustomErrors(signOutHandler);
 }
