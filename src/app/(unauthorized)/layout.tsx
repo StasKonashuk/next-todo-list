@@ -1,4 +1,4 @@
-import { UnauthorizedLayout } from 'layouts';
+import { UnauthorizedLayout } from 'shared/layouts';
 
 interface LayoutProps {
   children: React.ReactNode;

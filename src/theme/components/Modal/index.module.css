@@ -28,10 +28,14 @@
 
   align-items: flex-start;
   justify-content: center;
+
+  z-index: 1100 !important;
 }
 
 .overlay {
   background: none;
+
+  z-index: 1000 !important;
 }
 
 .close {

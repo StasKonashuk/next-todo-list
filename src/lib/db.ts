@@ -1,9 +1,7 @@
 import { Database, IDocument, Service, ServiceOptions } from '@paralect/node-mongo';
 
-// @TODO: Add envs
-const MONGO_URI =
-  'mongodb://root:root@localhost:27017/api-development?authSource=admin&replicaSet=rs&tls=false&directConnection=true';
-const MONGO_DB_NAME = 'todos-test-app';
+const MONGO_URI = process.env.NEXT_API_MONGO_URI || '';
+const MONGO_DB_NAME = process.env.NEXT_MONGO_DB_NAME;
 
 const database = new Database(MONGO_URI, MONGO_DB_NAME);
 

@@ -5,16 +5,17 @@ import { redirect } from 'next/navigation';
 import { Button, PasswordInput, Stack, TextInput } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { RoutePath } from 'lib/constants';
-import { signInSchema } from 'lib/schemas';
-import { ApiError, SignInParams } from 'lib/types';
+import { setAccount, useSignInMutation } from 'features/account';
 import { useForm } from 'react-hook-form';
-
-import { Title } from 'components';
-
-import { useSignInMutation } from 'services';
+import { useDispatch } from 'react-redux';
+import { RoutePath } from 'shared/constants';
+import { signInSchema } from 'shared/schemas';
+import { ApiError, SignInParams } from 'shared/types';
+import { Title } from 'shared/ui';
 
 const SignIn = () => {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -34,11 +35,12 @@ const SignIn = () => {
           color: 'green',
         });
 
+        dispatch(setAccount({ ...result.data, isAuthorized: true }));
+
         redirect(RoutePath.Todos);
       }
 
       if (result.error) {
-        // @TODO: Check types
         showNotification({
           title: 'Error',
           message: (result.error as ApiError).data.error,

@@ -1,19 +1,17 @@
 import { FC, useCallback } from 'react';
-import { Button, Select, Stack, Textarea, TextInput } from '@mantine/core';
-import { DatePickerInput } from '@mantine/dates';
+import { Button, Stack } from '@mantine/core';
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
 import { zodResolver } from '@hookform/resolvers/zod';
-import dayjs from 'dayjs';
-import { TODO_STATUS_OPTIONS } from 'lib/constants';
-import { ModalId, TodoStatus } from 'lib/enums';
-import { addTodoToList } from 'lib/features';
-import { addTodoToListSchema } from 'lib/schemas';
-import { AddTodoToListParams } from 'lib/types';
-import { Controller, useForm } from 'react-hook-form';
+import { addTodoToList } from 'features';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { ModalId, TodoStatus } from 'shared/enums';
+import { addTodoToListSchema } from 'shared/schemas';
+import { AddTodoToListParams } from 'shared/types';
+import { ControlledField } from 'shared/ui';
 
-import classes from './index.module.css';
+import { FORM_FIELDS } from './constants';
 
 interface AddTodoModalProps {
   listId: string;
@@ -22,15 +20,12 @@ interface AddTodoModalProps {
 const AddTodoModal: FC<AddTodoModalProps> = ({ listId }) => {
   const dispatch = useDispatch();
 
-  const {
-    register,
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<AddTodoToListParams>({
+  const formMethods = useForm<AddTodoToListParams>({
     defaultValues: { status: TodoStatus.Todo },
     resolver: zodResolver(addTodoToListSchema),
   });
+
+  const { handleSubmit } = formMethods;
 
   const handleCreateTodo = useCallback(
     (data: AddTodoToListParams) => {
@@ -47,63 +42,21 @@ const AddTodoModal: FC<AddTodoModalProps> = ({ listId }) => {
     [dispatch, listId],
   );
 
+  const displayedControlledFields = FORM_FIELDS.map((formField) => (
+    <ControlledField key={formField.inputName} {...formField} />
+  ));
+
   return (
     <Stack>
-      <form onSubmit={handleSubmit(handleCreateTodo)}>
-        <Stack>
-          <TextInput
-            {...register('title')}
-            label="Title"
-            placeholder="Enter task title"
-            error={errors.title?.message}
-          />
+      <FormProvider {...formMethods}>
+        <form onSubmit={handleSubmit(handleCreateTodo)}>
+          <Stack>{displayedControlledFields}</Stack>
 
-          <Textarea
-            {...register('description')}
-            label="Description"
-            placeholder="Enter task description"
-            autosize
-            minRows={2}
-            maxRows={3}
-            classNames={{ input: classes.textarea }}
-            error={errors.description?.message}
-          />
-
-          <Controller
-            control={control}
-            name="status"
-            render={({ field: { value, onChange }, fieldState: { error } }) => (
-              <Select
-                label="Status"
-                value={value}
-                onChange={onChange}
-                data={TODO_STATUS_OPTIONS}
-                error={error?.message}
-              />
-            )}
-          />
-
-          <Controller
-            control={control}
-            name="dueDate"
-            render={({ field: { value, onChange }, fieldState: { error } }) => (
-              <DatePickerInput
-                valueFormat="DD/MM/YYYY"
-                label="Due date"
-                placeholder="Pick due date"
-                value={value}
-                onChange={onChange}
-                error={error?.message}
-                minDate={dayjs().add(1, 'd').format('YYYY-MM-DD')}
-              />
-            )}
-          />
-        </Stack>
-
-        <Button variant="primary" size="md" type="submit" fullWidth mt={24}>
-          Create Task
-        </Button>
-      </form>
+          <Button variant="primary" size="md" type="submit" fullWidth mt={24}>
+            Create Task
+          </Button>
+        </form>
+      </FormProvider>
     </Stack>
   );
 };

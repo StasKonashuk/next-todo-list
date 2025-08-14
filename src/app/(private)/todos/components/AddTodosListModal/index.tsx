@@ -3,12 +3,12 @@ import { Button, Stack, TextInput } from '@mantine/core';
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ModalId } from 'lib/enums';
-import { addTodosList } from 'lib/features';
-import { AddTodosListPayload } from 'lib/features/todos/types';
-import { createTodosListSchema } from 'lib/schemas';
+import { addTodosList } from 'features';
+import { AddTodosListPayload } from 'features/todos';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { ModalId } from 'shared/enums';
+import { createTodosListSchema } from 'shared/schemas';
 
 const AddTodosListModal: FC = () => {
   const dispatch = useDispatch();

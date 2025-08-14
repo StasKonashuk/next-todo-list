@@ -7,7 +7,6 @@
       border: 1px solid var(--color-border-secondary);
       border-radius: var(--border-radius-s);
 
-      background: var(--color-bg-neutral-grey-100);
       color: var(--color-text-primary-base);
       font-weight: 400;
       font-size: var(--font-size-md);
@@ -23,12 +22,6 @@
 
       &::placeholder {
         color: var(--color-text-tertiary);
-      }
-
-      &[data-disabled='true'] {
-        background: var(--color-bg-neutral-grey-200);
-        color: var(--color-text-secondary);
-        cursor: default !important;
       }
 
       &[data-error='true'] {

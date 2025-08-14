@@ -1,8 +1,7 @@
 'use-client';
 
 import { Stack } from '@mantine/core';
-
-import { Title } from 'components';
+import { Title } from 'shared/ui';
 
 const Home = () => (
   <Stack>

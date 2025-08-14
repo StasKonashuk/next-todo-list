@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { Tabs } from '@mantine/core';
-import { Todo } from 'lib/features/todos/types';
+import { Todo } from 'features/todos';
 
 import TodoComments from '../Comments';
 import TodoForm from '../TodoForm';

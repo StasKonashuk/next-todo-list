@@ -1,24 +1,11 @@
-import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
-import { COOKIES } from 'lib/constants';
-import { HttpCode } from 'lib/enums';
-import attachCustomErrors from 'lib/middlewares/attach-custom-errors';
-import { ApiHandler } from 'lib/types';
-
-// @TODO: Move to utils
-const unsetTokens = async () => {
-  const cookieStore = await cookies();
-
-  cookieStore.set({
-    name: COOKIES.ACCESS_TOKEN,
-    value: '',
-    httpOnly: true,
-    expires: new Date(0),
-  });
-};
+import attachCustomErrors from 'shared/api/middlewares/attach-custom-errors';
+import { HttpCode } from 'shared/enums';
+import { ApiHandler } from 'shared/types';
+import { cookiesUtils } from 'shared/utils';
 
 const signOutHandler: ApiHandler = async () => {
-  await unsetTokens();
+  await cookiesUtils.unsetTokens();
 
   return new NextResponse(JSON.stringify({ data: null }), {
     status: HttpCode.Ok,
@@ -26,5 +13,4 @@ const signOutHandler: ApiHandler = async () => {
   });
 };
 
-// @TODO: Think about middleware merge fn
 export const POST = await attachCustomErrors(signOutHandler);

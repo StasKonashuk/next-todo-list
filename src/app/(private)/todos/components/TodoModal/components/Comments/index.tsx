@@ -1,15 +1,14 @@
 import { FC, useCallback } from 'react';
 import { ActionIcon, Button, Group, ScrollArea, Stack, Textarea, Tooltip } from '@mantine/core';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { addCommentToTodo, removeCommentFromTodo } from 'lib/features';
-import { TodoComment } from 'lib/features/todos/types';
-import { addTodoCommentSchema } from 'lib/schemas';
-import { AddTodoCommentParams } from 'lib/types';
+import { addCommentToTodo, removeCommentFromTodo } from 'features';
+import { TodoComment } from 'features/todos';
 import { useForm } from 'react-hook-form';
 import { FaTrash } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-
-import { Text } from 'components';
+import { addTodoCommentSchema } from 'shared/schemas';
+import { AddTodoCommentParams } from 'shared/types';
+import { Text } from 'shared/ui';
 
 import classes from './index.module.css';
 

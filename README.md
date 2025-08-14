@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Task Management Application
 
-## Getting Started
+---
 
-First, run the development server:
+## Project Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This application allows users to manage task lists and individual tasks. Users can create, edit, and delete task lists and tasks, track task status, monitor remaining time for each task and add/remove comments for each task.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Built with **Next.js 14+ (App Router)** and **Feature-Sliced Design (FSD)**.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Technologies
 
-## Learn More
+- **Next.js 15.4.6** (App Router)
+- **React** + TypeScript
+- **Mantine** – UI component library
+- **React-hook-form** for forms
+- **Style-dictionary** for design tokens
+- State Management: Redux Toolkit
+- **CSS Modules / CSS Variables**
+- **Jest + React Testing Library** for unit testing
+- **Storybook** for component documentation
+- **Zod** for schemas
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure (FSD)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+src/
+├── **tests**/ # App tests
+├── app/ # App Router pages
+│ ├── page.tsx
+│ └── api/ # Internal Next.js API routes
+├── features/ # Functional blocks (Auth, TaskManagement)
+├── lib/ # Mongo DB, Redux Toolkit configurations
+├── shared/ # Common components, layouts, constants, enums, schemas, types, middlewares and utils
+└── theme/ # Mantine configuration
 
-## Deploy on Vercel
+## Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 1. Welcome Screen
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Greeting message
+- Button to navigate to the login page
+
+### 2. Login Page
+
+- Fields: Email and Password
+- Button: "Login"
+- Local test credentials:
+
+Email: test@gmail.com
+Password: test1234$
+
+### 3. Main Screen (Task Lists)
+
+- View all task lists with task counts
+- Add, edit, delete task lists
+
+### 5. Task Modal
+
+- Display task details: title, description, status, dueDate, timer, comments
+- Edit and delete task functionality
+
+## Installation & Local Setup
+
+1. Install dependencies:
+   ```sh
+   npm install
+   ```
+2. Run the application:
+   ```sh
+   npm run dev
+   ```
+3. Run Storybook:
+   ```sh
+   npm run storybook
+   ```
+4. Run tests:
+   ```sh
+   npm run test
+   ```
+
+## Test Credentials
+
+Email: test@gmail.com
+Password: test1234$
+
+## Deployment
+
+link:

@@ -1,25 +1,20 @@
 import { FC, useCallback, useEffect, useState } from 'react';
-import { Button, Group, Select, Stack, Textarea, TextInput } from '@mantine/core';
-import { DatePickerInput } from '@mantine/dates';
+import { Button, Group, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
 import { zodResolver } from '@hookform/resolvers/zod';
-import dayjs from 'dayjs';
-import { TODO_STATUS_OPTIONS } from 'lib/constants';
-import { ModalId } from 'lib/enums';
-import { editTodo, removeTodoFromList } from 'lib/features';
-import { Todo } from 'lib/features/todos/types';
-import { editTodoSchema } from 'lib/schemas';
-import { EditTodoParams } from 'lib/types';
-import { Controller, useForm } from 'react-hook-form';
+import { editTodo, removeTodoFromList } from 'features';
+import { Todo } from 'features/todos';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { ModalId } from 'shared/enums';
+import { editTodoSchema } from 'shared/schemas';
+import { EditTodoParams } from 'shared/types';
+import { ControlledField, Text } from 'shared/ui';
 
-import { Text } from 'components';
-
+import { FORM_FIELDS } from './constants';
 import { calcTimeLeft } from './helpers';
-
-import classes from './index.module.css';
 
 const TodoForm: FC<Todo> = ({ id, title, status, description, dueDate, createdOn }) => {
   const [timeLeft, setTimeLeft] = useState(() => calcTimeLeft(createdOn, dueDate));
@@ -36,15 +31,12 @@ const TodoForm: FC<Todo> = ({ id, title, status, description, dueDate, createdOn
     return () => clearInterval(interval);
   }, [createdOn, dueDate]);
 
-  const {
-    register,
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<EditTodoParams>({
+  const formMethods = useForm<EditTodoParams>({
     defaultValues: { title, status, description, dueDate },
     resolver: zodResolver(editTodoSchema),
   });
+
+  const { handleSubmit } = formMethods;
 
   const handleEditTodo = useCallback(
     (data: EditTodoParams) => {
@@ -91,94 +83,50 @@ const TodoForm: FC<Todo> = ({ id, title, status, description, dueDate, createdOn
     });
   }, [dispatch, id]);
 
+  const displayedControlledFields = FORM_FIELDS.map((formField) => (
+    <ControlledField key={formField.inputName} disabled={!editMode} {...formField} />
+  ));
+
   return (
-    <form onSubmit={handleSubmit(handleEditTodo)}>
-      <Stack>
-        <TextInput
-          {...register('title')}
-          disabled={!editMode}
-          label="Todo title"
-          placeholder="Enter todo title"
-          error={errors.title?.message}
-        />
+    <FormProvider {...formMethods}>
+      <form onSubmit={handleSubmit(handleEditTodo)}>
+        <Stack>
+          {displayedControlledFields}
 
-        <Textarea
-          {...register('description')}
-          disabled={!editMode}
-          label="Description"
-          placeholder="Enter todo description"
-          autosize
-          minRows={2}
-          maxRows={3}
-          classNames={{ input: classes.textarea }}
-          error={errors.description?.message}
-        />
+          {timeLeft && (
+            <Stack gap={8}>
+              <Text fw="medium">Time left</Text>
 
-        <Controller
-          control={control}
-          name="status"
-          render={({ field: { value, onChange }, fieldState: { error } }) => (
-            <Select
-              label="Status"
-              disabled={!editMode}
-              value={value}
-              onChange={onChange}
-              data={TODO_STATUS_OPTIONS}
-              error={error?.message}
-            />
+              <Text fw="medium">{timeLeft}</Text>
+            </Stack>
           )}
-        />
+        </Stack>
 
-        <Controller
-          control={control}
-          name="dueDate"
-          render={({ field: { value, onChange }, fieldState: { error } }) => (
-            <DatePickerInput
-              disabled={!editMode}
-              valueFormat="DD/MM/YYYY"
-              label="Due date"
-              placeholder="Pick due date"
-              value={value}
-              onChange={onChange}
-              error={error?.message}
-              minDate={dayjs().add(1, 'd').format('YYYY-MM-DD')}
-            />
-          )}
-        />
+        {!editMode && (
+          <Stack mt={24}>
+            <Button variant="primary" fullWidth onClick={() => toggleEditMode()}>
+              Edit task
+            </Button>
 
-        {timeLeft && (
-          <Stack gap={8}>
-            <Text fw="medium">Time left</Text>
-
-            <Text fw="medium">{timeLeft}</Text>
+            <Button variant="destructive-outlined" fullWidth onClick={handleRemoveTodo}>
+              Remove task
+            </Button>
           </Stack>
         )}
-      </Stack>
 
-      {!editMode && (
-        <Stack mt={24}>
-          <Button variant="primary" fullWidth onClick={() => toggleEditMode()}>
-            Edit task
-          </Button>
+        {editMode && (
+          <Group mt={24} wrap="nowrap">
+            <Button fullWidth variant="outlined" onClick={() => toggleEditMode()}>
+              Cancel
+            </Button>
 
-          <Button variant="destructive-outlined" fullWidth onClick={handleRemoveTodo}>
-            Remove task
-          </Button>
-        </Stack>
-      )}
-
-      {editMode && (
-        <Group mt={24} wrap="nowrap">
-          <Button fullWidth variant="outlined" onClick={() => toggleEditMode()}>
-            Cancel
-          </Button>
-
-          <Button variant="primary" type="submit" fullWidth>
-            Save
-          </Button>
-        </Group>
-      )}
-    </form>
+            <Button variant="primary" type="submit" fullWidth>
+              Save
+            </Button>
+          </Group>
+        )}
+      </form>
+    </FormProvider>
   );
 };
 

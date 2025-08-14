@@ -3,10 +3,9 @@
 import { useCallback } from 'react';
 import { Button, Group, Stack } from '@mantine/core';
 import { modals } from '@mantine/modals';
-import { ModalId } from 'lib/enums';
 import { useAppSelector } from 'lib/hooks';
-
-import { Title } from 'components';
+import { ModalId } from 'shared/enums';
+import { Title } from 'shared/ui';
 
 import AddTodosListModal from './components/AddTodosListModal';
 import TodosLists from './components/TodosList';

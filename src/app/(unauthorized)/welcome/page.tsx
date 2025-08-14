@@ -2,11 +2,10 @@
 
 import { redirect } from 'next/navigation';
 import { Button, Stack } from '@mantine/core';
-import { RoutePath } from 'lib/constants';
-import { setIsWelcomeScreenHidden } from 'lib/features';
+import { setIsWelcomeScreenHidden } from 'features';
 import { useDispatch } from 'react-redux';
-
-import { Text, Title } from 'components';
+import { RoutePath } from 'shared/constants';
+import { Text, Title } from 'shared/ui';
 
 const Welcome = () => {
   const dispatch = useDispatch();

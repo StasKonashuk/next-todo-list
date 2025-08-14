@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-import { HttpCode } from 'lib/enums';
-import { authMiddleware } from 'lib/middlewares';
-import attachCustomErrors from 'lib/middlewares/attach-custom-errors';
-import { userService } from 'lib/resources/user';
-import { ApiHandler } from 'lib/types';
+import { userService } from 'features/api/users';
+import { authMiddleware } from 'shared/api/middlewares';
+import attachCustomErrors from 'shared/api/middlewares/attach-custom-errors';
+import { HttpCode } from 'shared/enums';
+import { ApiHandler } from 'shared/types';
 
 const getAccountHandler: ApiHandler = async (request, ctx) => {
   const { user } = ctx;

@@ -3,13 +3,12 @@ import { ActionIcon, Button, Collapse, Group, Stack, Tooltip } from '@mantine/co
 import { useDisclosure } from '@mantine/hooks';
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
-import { ModalId } from 'lib/enums';
-import { removeTodoFromList, removeTodosList } from 'lib/features';
-import { Todo, TodosList } from 'lib/features/todos/types';
+import { removeTodoFromList, removeTodosList } from 'features';
+import { Todo, TodosList } from 'features/todos';
 import { FaChevronDown, FaChevronUp, FaTrash } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-
-import { Text } from 'components';
+import { ModalId } from 'shared/enums';
+import { Text } from 'shared/ui';
 
 import AddTodoModal from '../AddTodoModal';
 import TodoItem from '../Todo';
@@ -33,7 +32,7 @@ const TodosLists: FC<TodosList> = ({ id, todos, title }) => {
   const handleOpenTodo = useCallback((todo: Todo) => {
     modals.open({
       modalId: ModalId.Todo,
-      title: `Task ${todo.title}`,
+      title: `${todo.title}`,
       children: <TodoModal todoId={todo.id} />,
     });
   }, []);

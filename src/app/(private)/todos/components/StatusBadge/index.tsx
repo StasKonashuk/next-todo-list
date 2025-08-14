@@ -1,6 +1,5 @@
 import { Group, Tooltip } from '@mantine/core';
-
-import { Text } from 'components';
+import { Text } from 'shared/ui';
 
 import classes from './index.module.css';
 

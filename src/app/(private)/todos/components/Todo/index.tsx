@@ -1,10 +1,9 @@
 import { FC } from 'react';
 import { ActionIcon, Group, Tooltip } from '@mantine/core';
-import { TODO_STATUS_BACKGROUNDS, TODO_STATUS_LABELS } from 'lib/constants';
-import { Todo } from 'lib/features/todos/types';
+import { Todo } from 'features/todos';
 import { FaTrash } from 'react-icons/fa';
-
-import { Text } from 'components';
+import { TODO_STATUS_BACKGROUNDS, TODO_STATUS_LABELS } from 'shared/constants';
+import { Text } from 'shared/ui';
 
 import StatusBadge from '../StatusBadge';
 

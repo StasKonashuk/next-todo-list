@@ -5,14 +5,14 @@ import * as nextNavigation from 'next/navigation';
 import { showNotification } from '@mantine/notifications';
 import { fireEvent, render, screen, waitFor } from '__tests__/utils';
 import SignIn from 'app/(unauthorized)/sign-in/page';
-import { RoutePath } from 'lib/constants';
+import { RoutePath } from 'shared/constants';
 
-const mockSinInSuccessResponse = { data: { email: 'test@test.com', password: 'password123' } };
+const mockSinInSuccessResponse = { data: { _id: '1', email: 'test@test.com', password: 'password123' } };
 const mockSinInErrorResponse = { error: { data: { error: 'The email or password you have entered is invalid' } } };
 
 const mockSignIn = jest.fn().mockImplementation(() => Promise.resolve(mockSinInErrorResponse));
 
-jest.mock('services', () => ({
+jest.mock('features', () => ({
   useSignInMutation: () => [mockSignIn, { isLoading: false }],
   useGetAccountQuery: () => ({ data: null, isLoading: false }),
   useSignOutMutation: () => [jest.fn(), { isLoading: false }],
@@ -34,7 +34,7 @@ jest.mock('@mantine/notifications', () => ({
 
 const INIT_STORE = {
   account: {
-    id: '',
+    _id: '',
     email: '',
     isWelcomeScreenHidden: true,
   },

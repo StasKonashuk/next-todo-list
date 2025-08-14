@@ -3,7 +3,7 @@ module.exports = {
   verbose: true,
   testEnvironment: 'node',
   transform: {
-    '^.+\\.(js|ts|tsx)$': 'babel-jest',
+    '^.+\\.(js|ts|tsx)$': ['babel-jest', { configFile: './babel.config.test.js' }],
   },
   testMatch: ['**/?(*.)+(spec|test).[tj]s?(x)'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],

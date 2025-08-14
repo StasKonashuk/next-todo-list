@@ -29,9 +29,9 @@
     "**/*.tsx",
     "next-env.d.ts",
     ".next/types/**/*.ts",
-    "src/utils",
+    "src/shared/utils",
     ".eslintrc.js",
     "jest.config.js",
-    "babel.config.js"
+    "babel.config.test.js"
   ]
 }
