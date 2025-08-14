@@ -6,8 +6,6 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 import { ControlledFieldType } from './enums';
 
-import classes from './index.module.css';
-
 interface ControlledFieldProps {
   type: ControlledFieldType;
   inputName: string;
@@ -35,6 +33,8 @@ const ControlledField: FC<ControlledFieldProps> = ({ type, disabled, inputName, 
                 value={value}
                 disabled={disabled}
                 onChange={onChange}
+                dropdownType="popover"
+                popoverProps={{ withinPortal: false }}
                 error={error?.message}
                 minDate={dayjs().add(1, 'd').format('YYYY-MM-DD')}
               />
@@ -52,7 +52,6 @@ const ControlledField: FC<ControlledFieldProps> = ({ type, disabled, inputName, 
                 disabled={disabled}
                 minRows={2}
                 maxRows={3}
-                classNames={{ input: classes.textarea }}
                 error={error?.message}
               />
             );
@@ -64,6 +63,7 @@ const ControlledField: FC<ControlledFieldProps> = ({ type, disabled, inputName, 
                 label="Status"
                 disabled={disabled}
                 value={value}
+                comboboxProps={{ withinPortal: false }}
                 onChange={onChange}
                 data={options || []}
                 error={error?.message}

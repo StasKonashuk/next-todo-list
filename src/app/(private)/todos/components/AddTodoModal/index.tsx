@@ -21,7 +21,7 @@ const AddTodoModal: FC<AddTodoModalProps> = ({ listId }) => {
   const dispatch = useDispatch();
 
   const formMethods = useForm<AddTodoToListParams>({
-    defaultValues: { status: TodoStatus.Todo },
+    defaultValues: { title: '', status: TodoStatus.Todo },
     resolver: zodResolver(addTodoToListSchema),
   });
 
