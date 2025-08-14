@@ -13,4 +13,6 @@ const signOutHandler: ApiHandler = async () => {
   });
 };
 
-export const POST = await attachCustomErrors(signOutHandler);
+export async function POST() {
+  await attachCustomErrors(signOutHandler);
+}

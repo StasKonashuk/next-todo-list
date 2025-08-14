@@ -18,4 +18,6 @@ const getAccountHandler: ApiHandler = async (request, ctx) => {
   });
 };
 
-export const GET = await attachCustomErrors(authMiddleware(getAccountHandler));
+export async function GET() {
+  await attachCustomErrors(authMiddleware(getAccountHandler));
+}

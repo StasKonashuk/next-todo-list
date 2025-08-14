@@ -28,4 +28,6 @@ const signInHandler: ApiHandler = async (req, ctx) => {
   });
 };
 
-export const POST = await attachCustomErrors(signInHandler);
+export async function POST() {
+  await attachCustomErrors(signInHandler);
+}
