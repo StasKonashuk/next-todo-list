@@ -8,7 +8,6 @@ export default Modal.extend({
     header: classes.modalHeader,
     body: classes.modalBody,
     overlay: classes.overlay,
-    close: classes.close,
     title: classes.title,
     inner: classes.inner,
   },
