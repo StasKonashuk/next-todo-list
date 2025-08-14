@@ -76,15 +76,19 @@ Password: Test1234$
    ```sh
    docker compose up
    ```
-3. Run the application:
+3. Create env file
+   ```sh
+   cp env.sample .env.development
+   ```
+4. Run the application:
    ```sh
    npm run dev
    ```
-4. Run Storybook:
+5. Run Storybook:
    ```sh
    npm run storybook
    ```
-5. Run tests:
+6. Run tests:
    ```sh
    npm run test
    ```

@@ -12,7 +12,7 @@ const mockSinInErrorResponse = { error: { data: { error: 'The email or password 
 
 const mockSignIn = jest.fn().mockImplementation(() => Promise.resolve(mockSinInErrorResponse));
 
-jest.mock('features', () => ({
+jest.mock('features/account/account.api.ts', () => ({
   useSignInMutation: () => [mockSignIn, { isLoading: false }],
   useGetAccountQuery: () => ({ data: null, isLoading: false }),
   useSignOutMutation: () => [jest.fn(), { isLoading: false }],
