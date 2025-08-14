@@ -3,7 +3,7 @@
 import { redirect } from 'next/navigation';
 import { Button, Stack } from '@mantine/core';
 import { RoutePath } from 'lib/constants';
-import { setIsWelcomeScreenDisplayed } from 'lib/features';
+import { setIsWelcomeScreenHidden } from 'lib/features';
 import { useDispatch } from 'react-redux';
 
 import { Text, Title } from 'components';
@@ -12,7 +12,7 @@ const Welcome = () => {
   const dispatch = useDispatch();
 
   const handleGoToSingIn = () => {
-    dispatch(setIsWelcomeScreenDisplayed({ isWelcomeScreenDisplayed: true }));
+    dispatch(setIsWelcomeScreenHidden({ isWelcomeScreenHidden: true }));
 
     redirect(RoutePath.SignIn);
   };
@@ -21,11 +21,13 @@ const Welcome = () => {
     <Stack pt={154} gap={32}>
       <Title ta="center">Welcome to Todo List App</Title>
 
-      <Text size="large" maw={400} ta="center">
+      <Text size="large" maw={400} ta="center" textColor="secondary">
         Organize your tasks, stay productive, and never forget what matters most.
       </Text>
 
-      <Button onClick={handleGoToSingIn}>Go to Sign In</Button>
+      <Button size="sm" variant="primary" onClick={handleGoToSingIn}>
+        Go to Sign In
+      </Button>
     </Stack>
   );
 };

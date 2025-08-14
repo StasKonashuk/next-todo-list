@@ -13,7 +13,7 @@ const PrivateLayout: FC<PrivateLayoutProps> = ({ children }) => (
   <AppShell component={Stack} bg="white" header={{ height: 42 }}>
     <Header />
 
-    <AppShell.Main bg="white" pt={0} mt={42}>
+    <AppShell.Main bg="white" pt={42} mih="100vh">
       {children}
     </AppShell.Main>
   </AppShell>

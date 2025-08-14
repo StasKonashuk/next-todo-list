@@ -1,0 +1,9 @@
+.root {
+  border-radius: var(--border-radius-s);
+  align-items: center;
+
+  width: fit-content;
+  padding: 0 var(--spacing-m) 0 var(--spacing-s);
+
+  cursor: pointer;
+}

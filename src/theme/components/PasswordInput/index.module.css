@@ -1,0 +1,100 @@
+.root {
+  .inputWrapper {
+    margin-bottom: 2px;
+
+    .input {
+      border: 1px solid var(--color-border-secondary);
+      border-radius: var(--border-radius-s);
+
+      background: var(--color-bg-neutral-grey-100);
+      color: var(--color-text-primary-base);
+      font-weight: 400;
+      font-size: var(--font-size-md);
+      line-height: var(--font-line-height-s);
+
+      &:focus-within {
+        border-color: var(--color-border-accent) !important;
+      }
+
+      &:hover {
+        border-color: var(--color-border-primary);
+      }
+
+      &::placeholder {
+        color: var(--color-text-tertiary) !important;
+      }
+
+      &[data-error='true'] {
+        border-color: var(--color-border-error);
+      }
+    }
+
+    .innerInput {
+      background: var(--color-bg-neutral-grey-100);
+      color: var(--color-text-primary-base);
+      font-weight: 400;
+      font-size: var(--font-size-md);
+      line-height: var(--font-line-height-s);
+
+      &::placeholder {
+        color: var(--color-text-tertiary) !important;
+      }
+    }
+  }
+
+  &[data-size='md'] {
+    .innerInput {
+      min-height: 42px !important;
+      height: 42px !important;
+      max-height: 42px !important;
+
+      padding: var(--spacing-m) var(--spacing-l) !important;
+    }
+  }
+
+  &[data-size='sm'] {
+    .innerInput {
+      min-height: 36px !important;
+      height: 36px !important;
+      max-height: 36px !important;
+
+      padding: var(--spacing-s) var(--spacing-l) !important;
+    }
+  }
+}
+
+.label {
+  margin-bottom: var(--spacing-s);
+  color: var(--color-text-primary-base);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-s);
+
+  .required {
+    display: inline-block;
+    width: 7px;
+    margin-left: 2px;
+
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    line-height: var(--font-line-height-s);
+    color: var(--color-text-error);
+  }
+}
+
+.error {
+  margin-top: 4px !important;
+
+  color: var(--color-text-error) !important;
+  font-weight: 400;
+  font-size: var(--font-size-xs);
+  line-height: var(--font-line-height-xs);
+}
+
+.labelError {
+  color: var(--color-text-error) !important;
+}
+
+.visibilityToggle {
+  background: none !important;
+}

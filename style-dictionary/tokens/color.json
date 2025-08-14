@@ -21,16 +21,29 @@
           "active": {
             "value": "#C0DDF8"
           }
+        }
+      },
+      "secondary": {
+        "base": {
+          "value": "#F4F4F4"
         },
-        "secondary": {
-          "base": {
-            "value": "#F4F4F4"
+        "hovered": {
+          "value": "#EEEEEE"
+        },
+        "active": {
+          "value": "#E7E7E7"
+        }
+      },
+      "neutral": {
+        "grey": {
+          "200": {
+            "value": "#FAFAFB"
           },
-          "hovered": {
-            "value": "#EEEEEE"
+          "100": {
+            "value": "#FFFFFF"
           },
-          "active": {
-            "value": "#E7E7E7"
+          "300": {
+            "value": "#F6F7F9"
           }
         }
       }
@@ -63,6 +76,98 @@
       },
       "error": {
         "value": "#B13A41"
+      }
+    },
+    "semantic": {
+      "success": {
+        "base": {
+          "value": "#019939"
+        },
+        "light": {
+          "value": "#CFE7D7"
+        },
+        "pale": {
+          "value": "#EBFBF1"
+        }
+      },
+      "warning": {
+        "base": {
+          "value": "#EC980C"
+        },
+        "light": {
+          "value": "#FFE9BA"
+        },
+        "pale": {
+          "value": "#FFF6E7"
+        }
+      },
+      "error": {
+        "base": {
+          "value": "#DD2F2D"
+        },
+        "hover": {
+          "value": "#D32523"
+        },
+        "active": {
+          "value": "#C91B19"
+        },
+        "active-60": {
+          "value": "rgba(201, 27, 25, 0.6)"
+        },
+        "dark": {
+          "value": "#F15D4B"
+        },
+        "pale": {
+          "value": "#F8F0F0"
+        },
+        "light": {
+          "value": "#FAE4E4"
+        }
+      },
+      "info": {
+        "base": {
+          "value": "#1751D0"
+        },
+        "light": {
+          "value": "#EBF0FB"
+        },
+        "pale": {
+          "value": "#FDFDFF"
+        }
+      },
+      "neutral": {
+        "base": {
+          "value": "#0A090B"
+        }
+      }
+    },
+    "border": {
+      "primary": {
+        "value": "#D0D5DD"
+      },
+      "secondary": {
+        "value": "#E4E7EC"
+      },
+      "accent": {
+        "value": "#293DA3"
+      },
+      "error": {
+        "value": "#D52F2F"
+      },
+      "tertiary": {
+        "value": "#EEEFF1"
+      },
+      "quaternary": { "value": "#CEDAED" }
+    },
+    "status": {
+      "gray": {
+        "value": "#D9D9D9"
+      },
+      "green": {
+        "value": "#CFE7D7"
+      },
+      "blue-light": {
+        "value": "#BCD8F1"
       }
     }
   }

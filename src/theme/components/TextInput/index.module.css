@@ -1,0 +1,91 @@
+.root {
+  .inputWrapper {
+    margin-bottom: 2px;
+    cursor: text;
+
+    .input {
+      border: 1px solid var(--color-border-secondary);
+      border-radius: var(--border-radius-s);
+
+      background: var(--color-bg-neutral-grey-100);
+      color: var(--color-text-primary-base);
+      font-weight: 400;
+      font-size: var(--font-size-md);
+      line-height: var(--font-line-height-s);
+
+      &:hover {
+        border-color: var(--color-border-primary);
+      }
+
+      &:focus-within {
+        border-color: var(--color-border-accent);
+      }
+
+      &::placeholder {
+        color: var(--color-text-tertiary);
+      }
+
+      &[data-disabled='true'] {
+        background: var(--color-bg-neutral-grey-200);
+        color: var(--color-text-secondary);
+        cursor: default !important;
+      }
+
+      &[data-error='true'] {
+        border-color: var(--color-border-error) !important;
+      }
+    }
+  }
+
+  &[data-size='md'] {
+    .input {
+      min-height: 42px !important;
+      height: 42px !important;
+      max-height: 42px !important;
+
+      padding: var(--spacing-m) var(--spacing-l);
+    }
+  }
+
+  &[data-size='sm'] {
+    .input {
+      min-height: 36px !important;
+      height: 36px !important;
+      max-height: 36px !important;
+
+      padding: var(--spacing-s) var(--spacing-l);
+    }
+  }
+
+  &[data-size='xs'] {
+    .input {
+      min-height: 28px !important;
+      height: 28px !important;
+      max-height: 28px !important;
+
+      font-size: var(--font-size-sm);
+      padding: var(--spacing-xs) var(--spacing-s) var(--spacing-xs) var(--spacing-l);
+    }
+  }
+}
+
+.label {
+  margin-bottom: var(--spacing-s);
+  color: var(--color-text-primary-base);
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  line-height: var(--font-line-height-s);
+}
+
+.error {
+  margin-top: 4px !important;
+
+  color: var(--color-text-error) !important;
+  font-weight: 400;
+  font-size: var(--font-size-xs);
+  line-height: var(--font-line-height-xs);
+}
+
+.labelError {
+  color: var(--color-text-error) !important;
+}

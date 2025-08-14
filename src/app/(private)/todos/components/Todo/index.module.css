@@ -1,0 +1,13 @@
+.todoWrapper {
+  border: 1px solid var(--color-border-secondary);
+  border-radius: var(--border-radius-m);
+  padding: var(--spacing-m);
+
+  justify-content: space-between;
+
+  cursor: pointer;
+
+  &:hover {
+    background: var(--color-bg-secondary-base);
+  }
+}

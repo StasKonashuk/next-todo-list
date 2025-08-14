@@ -37,17 +37,17 @@ const AddTodosListModal: FC = () => {
   return (
     <Stack>
       <form onSubmit={handleSubmit(handleCreateTodosList)}>
-        <Stack gap={20}>
+        <Stack>
           <TextInput
             {...register('title')}
-            label="Todos list title"
-            placeholder="Enter todos list title"
+            label="Tasks list title"
+            placeholder="Enter tasks list title"
             error={errors.title?.message}
           />
         </Stack>
 
-        <Button type="submit" fullWidth mt={24}>
-          Create
+        <Button variant="primary" type="submit" fullWidth mt={24}>
+          Create Tasks List
         </Button>
       </form>
     </Stack>

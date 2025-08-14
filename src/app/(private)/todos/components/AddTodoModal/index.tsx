@@ -50,18 +50,18 @@ const AddTodoModal: FC<AddTodoModalProps> = ({ listId }) => {
   return (
     <Stack>
       <form onSubmit={handleSubmit(handleCreateTodo)}>
-        <Stack gap={20}>
+        <Stack>
           <TextInput
             {...register('title')}
             label="Title"
-            placeholder="Enter todo title"
+            placeholder="Enter task title"
             error={errors.title?.message}
           />
 
           <Textarea
             {...register('description')}
             label="Description"
-            placeholder="Enter todo description"
+            placeholder="Enter task description"
             autosize
             minRows={2}
             maxRows={3}
@@ -100,8 +100,8 @@ const AddTodoModal: FC<AddTodoModalProps> = ({ listId }) => {
           />
         </Stack>
 
-        <Button type="submit" fullWidth mt={24}>
-          Create
+        <Button variant="primary" size="md" type="submit" fullWidth mt={24}>
+          Create Task
         </Button>
       </form>
     </Stack>

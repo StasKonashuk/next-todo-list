@@ -28,7 +28,10 @@ const Header: FC = () => {
         Test Todo List App
       </Text>
 
-      <Button onClick={handleSignOut}>Log out</Button>
+      {/* @TODO: Remove for unauthorized */}
+      <Button size="sm" variant="primary" h={26} onClick={handleSignOut}>
+        Log out
+      </Button>
     </AppShell.Header>
   );
 };

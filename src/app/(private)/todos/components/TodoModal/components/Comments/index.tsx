@@ -1,5 +1,5 @@
 import { FC, useCallback } from 'react';
-import { ActionIcon, Button, Group, ScrollArea, Stack, Textarea } from '@mantine/core';
+import { ActionIcon, Button, Group, ScrollArea, Stack, Textarea, Tooltip } from '@mantine/core';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { addCommentToTodo, removeCommentFromTodo } from 'lib/features';
 import { TodoComment } from 'lib/features/todos/types';
@@ -51,9 +51,11 @@ const TodoComments: FC<TodoCommentsProps> = ({ comments, todoId }) => {
     <Group key={id} justify="space-between" w="100%">
       <Text>{text}</Text>
 
-      <ActionIcon onClick={() => handleRemoveTodoComment(id)}>
-        <FaTrash />
-      </ActionIcon>
+      <Tooltip label="Remove comment">
+        <ActionIcon onClick={() => handleRemoveTodoComment(id)}>
+          <FaTrash color="var(--color-text-error)" size={16} />
+        </ActionIcon>
+      </Tooltip>
     </Group>
   ));
 
@@ -81,8 +83,8 @@ const TodoComments: FC<TodoCommentsProps> = ({ comments, todoId }) => {
             error={errors.text?.message}
           />
 
-          <Button type="submit" fullWidth>
-            Send
+          <Button variant="primary" type="submit" fullWidth>
+            Send Comment
           </Button>
         </Stack>
       </form>

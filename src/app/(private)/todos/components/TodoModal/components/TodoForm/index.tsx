@@ -77,13 +77,23 @@ const TodoForm: FC<Todo> = ({ id, title, status, description, dueDate, createdOn
           color: 'green',
         });
       },
+      confirmProps: {
+        variant: 'primary',
+        w: '100px',
+        h: '36px',
+      },
+      cancelProps: {
+        variant: 'outlined',
+        w: '100px',
+        h: '36px',
+      },
       labels: { confirm: 'Yes', cancel: 'Cancel' },
     });
   }, [dispatch, id]);
 
   return (
     <form onSubmit={handleSubmit(handleEditTodo)}>
-      <Stack gap={20}>
+      <Stack>
         <TextInput
           {...register('title')}
           disabled={!editMode}
@@ -147,23 +157,23 @@ const TodoForm: FC<Todo> = ({ id, title, status, description, dueDate, createdOn
 
       {!editMode && (
         <Stack mt={24}>
-          <Button fullWidth onClick={() => toggleEditMode()}>
-            Edit todo item
+          <Button variant="primary" fullWidth onClick={() => toggleEditMode()}>
+            Edit task
           </Button>
 
-          <Button variant="outline" color="red" fullWidth onClick={handleRemoveTodo}>
-            Remove todo item
+          <Button variant="destructive-outlined" fullWidth onClick={handleRemoveTodo}>
+            Remove task
           </Button>
         </Stack>
       )}
 
       {editMode && (
         <Group mt={24} wrap="nowrap">
-          <Button fullWidth variant="outline" onClick={() => toggleEditMode()}>
+          <Button fullWidth variant="outlined" onClick={() => toggleEditMode()}>
             Cancel
           </Button>
 
-          <Button type="submit" fullWidth>
+          <Button variant="primary" type="submit" fullWidth>
             Save
           </Button>
         </Group>

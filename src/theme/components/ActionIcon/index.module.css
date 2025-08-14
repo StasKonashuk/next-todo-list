@@ -1,0 +1,20 @@
+.root {
+  border-radius: var(--border-radius-s);
+  border: 1px solid var(--color-border-primary) !important;
+
+  height: auto !important;
+  width: auto !important;
+
+  padding: var(--spacing-xs) !important;
+
+  background: var(--color-bg-secondary-base) !important;
+
+  &:hover {
+    background: var(--color-bg-secondary-hovered);
+  }
+
+  &:active {
+    background: var(--color-bg-secondary-active);
+    color: var(--color-icon-primary-base) !important;
+  }
+}

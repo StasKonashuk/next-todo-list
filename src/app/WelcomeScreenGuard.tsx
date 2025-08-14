@@ -11,10 +11,10 @@ const WelcomeScreenGuard = ({ children }: { children: React.ReactNode }) => {
   const account = useAppSelector((store) => store.account);
 
   useEffect(() => {
-    if (!account.isWelcomeScreenDisplayed && pathName !== RoutePath.Welcome) {
+    if (!account.isWelcomeScreenHidden && pathName !== RoutePath.Welcome) {
       redirect(RoutePath.Welcome);
     }
-  }, [account.isWelcomeScreenDisplayed, pathName]);
+  }, [account.isWelcomeScreenHidden, pathName]);
 
   return children;
 };

@@ -15,7 +15,7 @@ export interface Todo {
   comments?: TodoComment[];
 }
 
-interface TodosList {
+export interface TodosList {
   id: string;
   title: string;
   todos: Todo[];

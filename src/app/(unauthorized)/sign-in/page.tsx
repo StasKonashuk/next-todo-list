@@ -57,7 +57,7 @@ const SignIn = () => {
         </Stack>
 
         <form onSubmit={handleSubmit(handleSignIn)}>
-          <Stack gap={20}>
+          <Stack>
             <TextInput
               {...register('email')}
               label="Email Address"
@@ -74,7 +74,7 @@ const SignIn = () => {
             />
           </Stack>
 
-          <Button type="submit" loading={isLoading} fullWidth mt={32}>
+          <Button variant="primary" size="sm" type="submit" loading={isLoading} fullWidth mt={32}>
             Sign in
           </Button>
         </form>

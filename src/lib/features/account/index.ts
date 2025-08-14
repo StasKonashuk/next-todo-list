@@ -4,17 +4,17 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface AccountState {
   id: string;
   email: string;
-  isWelcomeScreenDisplayed?: boolean;
+  isWelcomeScreenHidden?: boolean;
 }
 
-interface SetIsWelcomeScreenDisplayedPayload {
-  isWelcomeScreenDisplayed?: boolean;
+interface SetIsWelcomeScreenHiddenPayload {
+  isWelcomeScreenHidden?: boolean;
 }
 
 const initialState: AccountState = {
   id: '',
   email: '',
-  isWelcomeScreenDisplayed: Boolean(readLocalStorageValue({ key: 'isWelcomeScreenDisplayed' })),
+  isWelcomeScreenHidden: Boolean(readLocalStorageValue({ key: 'isWelcomeScreenHidden' })),
 };
 
 export const accountSlice = createSlice({
@@ -26,18 +26,18 @@ export const accountSlice = createSlice({
       state.email = email;
     },
 
-    setIsWelcomeScreenDisplayed: (
+    setIsWelcomeScreenHidden: (
       state,
-      { payload: { isWelcomeScreenDisplayed } }: PayloadAction<SetIsWelcomeScreenDisplayedPayload>,
+      { payload: { isWelcomeScreenHidden } }: PayloadAction<SetIsWelcomeScreenHiddenPayload>,
     ) => {
-      localStorage.setItem('isWelcomeScreenDisplayed', String(isWelcomeScreenDisplayed));
+      localStorage.setItem('isWelcomeScreenHidden', String(isWelcomeScreenHidden));
 
-      state.isWelcomeScreenDisplayed = isWelcomeScreenDisplayed;
+      state.isWelcomeScreenHidden = isWelcomeScreenHidden;
     },
   },
 });
 
 export const {
   reducer: accountReducer,
-  actions: { setAccount, setIsWelcomeScreenDisplayed },
+  actions: { setAccount, setIsWelcomeScreenHidden },
 } = accountSlice;
