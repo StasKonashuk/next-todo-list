@@ -8,7 +8,7 @@ export const accountApi = createApi({
   reducerPath: 'accountApi',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL, credentials: 'include' }),
   endpoints: (builder) => ({
-    getAccount: builder.query<User, void>({
+    getAccount: builder.query<{ data: User }, void>({
       query: () => '/',
     }),
     signIn: builder.mutation<User, SignInParams, BaseQueryFn<string | FetchArgs, unknown, ApiError>>({
