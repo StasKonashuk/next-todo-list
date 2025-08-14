@@ -7,3 +7,5 @@ import * as components from './components';
 export const mantineTheme = createTheme({
   components,
 });
+
+export { resolver as themeResolver } from './resolver';

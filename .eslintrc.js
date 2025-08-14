@@ -8,6 +8,7 @@ module.exports = {
     'airbnb',
     'airbnb-typescript',
     'prettier',
+    'plugin:storybook/recommended',
   ],
   plugins: ['@typescript-eslint', 'import', 'simple-import-sort', 'no-relative-import-paths', 'prettier'],
   parserOptions: {

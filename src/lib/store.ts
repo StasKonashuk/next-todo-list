@@ -17,11 +17,13 @@ const combinedReducer = combineReducers({
   // [moviesApi.reducerPath]: moviesApi.reducer,
 });
 
-const makeStore = () =>
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const makeStore = (preloadedState?: any) =>
   configureStore({
     reducer: combinedReducer,
     // TODO: Add RTQ query middleware
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(accountApi.middleware),
+    preloadedState,
   });
 
 export type AppStore = ReturnType<typeof makeStore>;
