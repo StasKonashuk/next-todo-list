@@ -12,7 +12,8 @@
     "watch-tokens": "nodemon --watch style-dictionary/tokens --ext json --exec \"npm run build-tokens\"",
     "prettier": "prettier . --write --config .prettierrc.js",
     "eslint": "eslint . --fix",
-    "precommit": "npm run build-tokens && lint-staged"
+    "precommit": "npm run build-tokens && lint-staged",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
@@ -29,6 +30,7 @@
     "concurrently": "^9.2.0",
     "dayjs": "^1.11.13",
     "jsonwebtoken": "^9.0.2",
+    "lint-staged": "^16.1.5",
     "lodash": "^4.17.21",
     "next": "15.4.6",
     "nodemon": "^3.1.10",
@@ -76,7 +78,7 @@
       "stylelint --fix",
       "prettier --write"
     ],
-    "!(*.css|*.ts|*.tsx)": [
+    "!(*.css|*.ts|*.tsx|.husky/**)": [
       "prettier --write"
     ]
   }

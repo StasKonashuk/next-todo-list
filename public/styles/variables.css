@@ -3,23 +3,23 @@
  */
 
 :root {
-  --color-bg-primary-base: #0b1548;
+  --color-bg-primary-base: #0B1548;
   --color-bg-primary-hovered: #293366;
   --color-bg-primary-active: #172154;
-  --color-bg-primary-light-base: #e1f0ff;
-  --color-bg-primary-light-hovered: #cde6fe;
-  --color-bg-primary-light-active: #c0ddf8;
-  --color-bg-primary-secondary-base: #f4f4f4;
-  --color-bg-primary-secondary-hovered: #eeeeee;
-  --color-bg-primary-secondary-active: #e7e7e7;
-  --color-text-primary-base: #2a2e34;
-  --color-text-primary-white: #ffffff;
-  --color-text-secondary: #656f7d;
-  --color-text-tertiary: #8f97a2;
-  --color-text-accent-base: #293da3;
-  --color-text-accent-hovered: #0b1f85;
+  --color-bg-primary-light-base: #E1F0FF;
+  --color-bg-primary-light-hovered: #CDE6FE;
+  --color-bg-primary-light-active: #C0DDF8;
+  --color-bg-primary-secondary-base: #F4F4F4;
+  --color-bg-primary-secondary-hovered: #EEEEEE;
+  --color-bg-primary-secondary-active: #E7E7E7;
+  --color-text-primary-base: #2A2E34;
+  --color-text-primary-white: #FFFFFF;
+  --color-text-secondary: #656F7D;
+  --color-text-tertiary: #8F97A2;
+  --color-text-accent-base: #293DA3;
+  --color-text-accent-hovered: #0B1F85;
   --color-text-accent-active: #000167;
-  --color-text-error: #b13a41;
+  --color-text-error: #B13A41;
   --font-size-4xl: 32px;
   --font-size-3xl: 24px;
   --font-size-2xl: 20px;
