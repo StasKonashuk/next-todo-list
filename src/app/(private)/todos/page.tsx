@@ -24,8 +24,8 @@ const Todos = () => {
   }, []);
 
   return (
-    <Stack align="center" justify="center" px={20} py={100}>
-      <Stack miw={700}>
+    <Stack align="center" justify="center" px={50} py={100}>
+      <Stack maw={1100} miw={300} w="100%">
         <Group justify="space-between">
           <Title>Tasks</Title>
 
