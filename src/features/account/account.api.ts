@@ -2,7 +2,7 @@ import { BaseQueryFn, createApi, FetchArgs, fetchBaseQuery } from '@reduxjs/tool
 import type { User } from 'shared/types';
 import { ApiError, SignInParams } from 'shared/types';
 
-const BASE_URL = `${process.env.NEXT_API_URL}/api/account`;
+const BASE_URL = '/api/account';
 
 export const accountApi = createApi({
   reducerPath: 'accountApi',
