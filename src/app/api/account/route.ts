@@ -5,7 +5,9 @@ import attachCustomErrors from 'shared/api/middlewares/attach-custom-errors';
 import { HttpCode } from 'shared/enums';
 import { RequestContext } from 'shared/types';
 
-export async function GET(req: NextRequest, ctx: RequestContext) {
+export async function GET(req: NextRequest) {
+  const ctx: RequestContext = { user: undefined, assertClientError: undefined };
+
   attachCustomErrors(req, ctx);
 
   await authMiddleware(req, ctx);
@@ -13,7 +15,7 @@ export async function GET(req: NextRequest, ctx: RequestContext) {
   const { user } = ctx;
 
   if (!user) {
-    return ctx.assertClientError('Account not found', HttpCode.NotFound);
+    return ctx.assertClientError!('Account not found', HttpCode.NotFound);
   }
 
   return new NextResponse(JSON.stringify({ data: userService.getPublic(user) }), {

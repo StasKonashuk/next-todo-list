@@ -5,7 +5,9 @@ import { HttpCode } from 'shared/enums';
 import { RequestContext } from 'shared/types';
 import { cookiesUtils, securityUtils } from 'shared/utils';
 
-export async function POST(req: NextRequest, ctx: RequestContext) {
+export async function POST(req: NextRequest) {
+  const ctx: RequestContext = { user: undefined, assertClientError: undefined };
+
   attachCustomErrors(req, ctx);
 
   const { email, password } = await req.json();
@@ -13,13 +15,13 @@ export async function POST(req: NextRequest, ctx: RequestContext) {
   const user = await userService.findOne({ email });
 
   if (!user || !user.passwordHash) {
-    return ctx.assertClientError('The email or password you have entered is invalid');
+    return ctx.assertClientError!('The email or password you have entered is invalid');
   }
 
   const isPasswordMatch = await securityUtils.compareTextWithHash(password, user.passwordHash);
 
   if (!isPasswordMatch) {
-    return ctx.assertClientError('The email or password you have entered is invalid');
+    return ctx.assertClientError!('The email or password you have entered is invalid');
   }
 
   await cookiesUtils.setTokens(user._id);

@@ -22,20 +22,23 @@ Built with **Next.js 14+ (App Router)** and **Feature-Sliced Design (FSD)**.
 - **Jest + React Testing Library** for unit testing
 - **Storybook** for component documentation
 - **Zod** for schemas
+- **MongoDB** – Database
 
 ---
 
 ## Project Structure (FSD)
 
+```md
 src/
-├── **tests**/ # App tests
-├── app/ # App Router pages
-│ ├── page.tsx
-│ └── api/ # Internal Next.js API routes
-├── features/ # Functional blocks (Auth, TaskManagement)
-├── lib/ # Mongo DB, Redux Toolkit configurations
-├── shared/ # Common components, layouts, constants, enums, schemas, types, middlewares and utils
-└── theme/ # Mantine configuration
+|-- **tests**/ # App tests
+|-- app/ # App Router pages
+| |-- page.tsx
+| └── api/ # Internal Next.js API routes
+|-- features/ # Functional blocks (Auth, TaskManagement)
+|-- lib/ # Mongo DB, Redux Toolkit configurations
+|-- shared/ # Common components, layouts, constants, enums, schemas, types, middlewares and utils
+└-- theme/ # Mantine configuration
+```
 
 ## Features
 
@@ -51,7 +54,7 @@ src/
 - Local test credentials:
 
 Email: test@gmail.com
-Password: test1234$
+Password: Test1234$
 
 ### 3. Main Screen (Task Lists)
 
@@ -69,15 +72,19 @@ Password: test1234$
    ```sh
    npm install
    ```
-2. Run the application:
+2. Run database container:
+   ```sh
+   docker compose up
+   ```
+3. Run the application:
    ```sh
    npm run dev
    ```
-3. Run Storybook:
+4. Run Storybook:
    ```sh
    npm run storybook
    ```
-4. Run tests:
+5. Run tests:
    ```sh
    npm run test
    ```
@@ -85,8 +92,8 @@ Password: test1234$
 ## Test Credentials
 
 Email: test@gmail.com
-Password: test1234$
+Password: Test1234$
 
 ## Deployment
 
-link:
+**Link**: https://next-todo-list-test-o1wifwthc-staskonashuks-projects.vercel.app

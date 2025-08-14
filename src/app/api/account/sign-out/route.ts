@@ -4,7 +4,9 @@ import { HttpCode } from 'shared/enums';
 import { RequestContext } from 'shared/types';
 import { cookiesUtils } from 'shared/utils';
 
-export async function POST(req: NextRequest, ctx: RequestContext) {
+export async function POST(req: NextRequest) {
+  const ctx: RequestContext = { user: undefined, assertClientError: undefined };
+
   attachCustomErrors(req, ctx);
 
   await cookiesUtils.unsetTokens();

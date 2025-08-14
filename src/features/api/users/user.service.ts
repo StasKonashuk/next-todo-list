@@ -8,6 +8,19 @@ const service = db.createService<User>(DATABASE_DOCUMENTS.USERS, {
   schemaValidator: (obj) => userSchema.parseAsync(obj),
 });
 
+const createInitialUser = async () => {
+  const user = await service.findOne({ email: 'test@gmail.com' });
+
+  if (!user) {
+    service.insertOne({
+      email: 'test@gmail.com',
+      passwordHash: '$2a$10$TJ1wz76Zq7SMJdOzCeeeL.BuWvNlYGbWTJ8fOWgEfGm9lqf7wplC6',
+    });
+  }
+};
+
+await createInitialUser();
+
 const privateFields = ['passwordHash'];
 
 const getPublic = (user: User | null) => _.omit(user, privateFields);

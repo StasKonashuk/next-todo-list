@@ -11,7 +11,7 @@ export const authMiddleware = async (req: NextRequest, context: RequestContext) 
   const accessToken = req.cookies.get(COOKIES.ACCESS_TOKEN);
 
   if (!accessToken) {
-    context.assertClientError('Unauthorized', HttpCode.Unauthorized);
+    context.assertClientError!('Unauthorized', HttpCode.Unauthorized);
 
     return;
   }
@@ -19,7 +19,7 @@ export const authMiddleware = async (req: NextRequest, context: RequestContext) 
   const verifiedToken = await securityUtils.verifyJwtToken<User>(accessToken.value);
 
   if (!verifiedToken) {
-    context.assertClientError('Unauthorized', HttpCode.Unauthorized);
+    context.assertClientError!('Unauthorized', HttpCode.Unauthorized);
 
     return;
   }
@@ -27,7 +27,7 @@ export const authMiddleware = async (req: NextRequest, context: RequestContext) 
   const user = await userService.findOne({ _id: verifiedToken.userId });
 
   if (!user) {
-    context.assertClientError('Unauthorized', HttpCode.Unauthorized);
+    context.assertClientError!('Unauthorized', HttpCode.Unauthorized);
 
     return;
   }
