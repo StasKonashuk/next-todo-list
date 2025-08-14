@@ -19,7 +19,7 @@
 
 # production
 /build
-/public/styles/
+/public/styles/variable.css
 
 # misc
 .DS_Store

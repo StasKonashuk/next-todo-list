@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"npm run watch-tokens\" \"next dev --turbopack\"",
-    "build": "next build",
+    "build": "npm run build-tokens && next build",
     "start": "next start",
     "lint": "next lint",
     "build-tokens": "style-dictionary build --config ./style-dictionary/config.json",
